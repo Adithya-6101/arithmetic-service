@@ -1,24 +1,14 @@
 name: Docker Image CI for GHCR
 
-on:
-  push
-  
+on: push
+
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }} # This line ensures the checked out branch matches the pushed branch
-
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
+      - uses: actions/checkout@v3
       - name: Build and push the image
         run: |
           docker login --username Adithya-6101 --password ${{secrets.ACCESS_TOKEN}} ghcr.io
-          docker build -t ghcr.io/Adithya-6101/arithmetic-service:latest --file Dockerfile .
+          docker build -t ghcr.io/Adithya-6101/arithmetic-service:latest --file Dockerfile .  
           docker push ghcr.io/Adithya-6101/arithmetic-service:latest
