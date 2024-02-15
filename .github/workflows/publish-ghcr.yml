@@ -13,7 +13,7 @@ jobs:
           ref: ${{ github.ref }} # This line ensures the checked out branch matches the pushed branch
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
