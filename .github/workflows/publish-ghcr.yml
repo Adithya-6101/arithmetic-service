@@ -7,15 +7,9 @@ jobs:
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-        
+      - uses: actions/checkout@v3
       - name: Build and push the image
+
         run: |
           docker login --username Adithya-6101 --password ${{secrets.ACCESS_TOKEN}} ghcr.io
           docker build -t ghcr.io/Adithya-6101/arithmetic-service:latest --file Dockerfile .
