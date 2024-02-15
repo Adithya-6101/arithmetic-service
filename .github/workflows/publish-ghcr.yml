@@ -6,9 +6,6 @@ on:
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -eux {0}
     steps:
       - name: Use Node.js 20
         uses: actions/setup-node@v3
