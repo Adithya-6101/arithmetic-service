@@ -1,0 +1,26 @@
+<html>
+  <h1>Arithmetic</h1>
+  <input type="number" id="num1" />
+  +
+  <input type="number" id="num2" />
+  <button onclick="add()">=</button>
+  <label id="sum"></label>
+  <script>
+    function add() {
+      let num1 = Number(document.getElementById("num1").value);
+      let num2 = Number(document.getElementById("num2").value);
+      
+      fetch(`http://localhost:3000/add?num1=${num1}&num2=${num2}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((result) => {
+          document.getElementById("sum").textContent = `${result}`;
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  </script>
+</html>
